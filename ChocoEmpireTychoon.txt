@@ -1,0 +1,212 @@
+Idle Game about building your chocolate empire.
+By AGames+ Studio
+
+    Title: Choco Mania Empire Idle Game
+
+-Core Mechanics
+
+*Manual Productions
+(Clicking chocolate Room)-Not yet sure
+-Automatic automation of chocolate. 
+
+*Other Features
+- Name your Character(Boss/Owner) with Gender(M/F), Hair and Cloths
+- Name your Factory
+- Logo
+- (To be Added) Design your Chocolate
+- (Soon) Special Events
+- Music for Background and Sound for Interactions
+
+*Upgrade
+(Workers)- Till Level 50, Maximum of 8 Workers Small, Maximum of 16 Workers Large
+(Rooms)- Till Level 50, Small and Large Rooms
+- Chocolate maker Room
+- Office 
+- Generator Room
+- Delivery Room
+(More Factories)- Till six Factories 
+- Factory 1 8 Small Rooms, 2 Large Rooms 
+()
+- Factory 2  10 Small Rooms, 4 Large Rooms
+()
+- Factory 3 12 Small Rooms, 8 Large Rooms
+()
+- Factory 4 12 Small Rooms, 10 large Rooms
+()
+- Factory 5 14 Small Rooms, 12 Large Rooms
+()
+- Factory 6 20 Small Rooms, 16 Large Rooms
+()
+
+
+-Code (C#)
+
+Menu function
+Player Status
+Other Features
+
+Resource
+public class resource
+
+Upgrade
+public class upgrade
+
+Worker
+public class Worker
+
+Rooms
+public class rooms
+
+Factories
+public class factories
+
+(
+Events
+public class event
+)
+
+*Offline Earnings ingame function
+(No Idea Yet)
+
+
+-UI/ Graphics (Unity)
+2D Spites
+Cartoony
+- Workers + Cosmetics
+- Room Design + Cosmetics
+- Factory 
+- Map
+- Menu
+
+How Each Requirement Will Be Met
+
+Consistent Running System
+
+-The program will use loops and time-based calculations (such as DateTime or timers in C#) to continuously generate points.
+
+-The game logic will calculate how many points are generated per second and update the total automatically.
+
+-This ensures the game runs consistently without requiring constant user input.
+
+Subunits for Point Generation
+
+-The game will include multiple subunits (e.g., workers, machines, factories).
+
+-Each subunit will produce a fixed number of points per second.
+
+-Object-Oriented Programming (OOP) principles will be used to create classes for each unit type.
+
+-Upgrades will increase production rates.
+
+Game Logic and Progression
+
+-The player will be able to purchase upgrades that increase income.
+
+-Costs will scale progressively to maintain balance.
+
+-The system will use mathematical formulas to calculate increasing costs and income growth.
+
+Saving System
+
+-The game will store player progress using file storage (such as JSON or text files).
+
+-When the player reopens the game, saved data will be loaded.
+
+-The system may also calculate “offline progress” by comparing saved timestamps with the current time.
+
+Testing and Debugging
+
+-The program will be tested regularly to ensure:
+
+-Points increase correctly over time.
+
+-Purchases update totals properly.
+
+-Save/load features work correctly.
+
+-Unit testing may be implemented for key methods.\
+
+Program structure (Prototype)
+
+ChocoManiaEmpire
+│
+├── ChocoEmpireMain.cs
+├── Player.cs
+├── Resource.cs
+├── Worker.cs
+├── Room.cs
+├── Factory.cs
+├── Upgrade.cs
+├── Event.cs
+│
+└── Systems
+     ├── ProductionSystem.cs
+     ├── SaveSystem.cs
+     └── OfflineEarnings.cs
+
+Road Map
+
+Stage 1 – C# Prototype (Current Stage)
+
+-Goal: Get all the core mechanics working in a console application.
+
+-Player creation, factories, rooms, workers
+
+-Manual and automatic production
+
+-Menu system
+
+-Worker assignment
+
+-Testing gameplay logic
+
+Stage 2 – Unity Integration
+
+-Goal: Move your working prototype into Unity to add visuals and UI.
+
+-Copy your classes (Player, Worker, Room, Factory, Upgrade, Resource) into Assets/Scripts/
+
+-Replace console input/output with Unity UI buttons, panels, and text
+
+-Use MonoBehaviour scripts with Start() and Update() for production
+
+-Add sprites, animations, and sounds for rooms, workers, chocolate production, etc.
+
+-Integrate automatic production, upgrades, and menus in the Unity UI
+
+Stage 3 – Release
+
+-Goal: Launch your game.
+
+-Test on your target platform (PC, Android, iOS)
+
+-Optimize production calculations and performance
+
+-Ensure save/load system works
+
+-Possibly integrate ads or in-game purchases for monetization
+
+Stage 4 – Updates & Maintenance
+
+-Goal: Keep players engaged and add new features.
+
+-Release special events (holidays, limited-time chocolates)
+
+-Add new factories, rooms, or upgrades
+
+-Balance gameplay and fix bugs
+
+-Respond to player feedback
+
+//
+Income Generation
+
+-Revenue for Me (Programmer)
+*Ads for revenue if Player wants more resources.(Ad base revenue)
+
+*Room cosmetics, Character cosmetics, and Worker cosmetics.(For Internal revenue)
+
+* Once Done Facebook Page for update and Player Features for more Hype.
+
+# P.s I needed money for my wife and future baby :( #
+//
