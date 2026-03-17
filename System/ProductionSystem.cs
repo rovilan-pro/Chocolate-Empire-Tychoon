@@ -1,41 +1,48 @@
 using System;
-using System.Collections.Generic;
-using System.Timers;
 
 public class ProductionSystem
 {
     private Player player;
-    private Timer productionTimer;
+    private System.Timers.Timer? productionTimer; // Nullable to allow null assignment
 
-    public ProductionSystem(Player p)
+    public ProductionSystem(Player player)
     {
-        player = p;
-        productionTimer = new Timer(1000); // every 1 second
+        this.player = player;
+        productionTimer = new System.Timers.Timer(1000); // Trigger every 1 second
         productionTimer.Elapsed += ProduceChocolate;
         productionTimer.AutoReset = true;
         productionTimer.Enabled = true;
     }
-    // Funcion
-    private void ProduceChocolate(Object source, ElapsedEventArgs e)
+
+    // Nullability fixed: sender can be null
+    private void ProduceChocolate(object? sender, System.Timers.ElapsedEventArgs e)
     {
         int totalProduction = 0;
 
-        foreach (Factory f in player.Factories)
+        foreach (var factory in player.Factories)
         {
-            totalProduction += f.GetTotalProduction(player.WorkerUpgrade.Level);
+            totalProduction += factory.GetTotalProduction(player.WorkerUpgrade.Level);
         }
-
-        player.Chocolate += totalProduction;
 
         if (totalProduction > 0)
         {
+            // Thread-safe update
+            lock (player)
+            {
+                player.Chocolate += totalProduction;
+            }
+
             Console.WriteLine($"[AUTO] Produced {totalProduction} chocolate! Total: {player.Chocolate}");
         }
     }
 
     public void Stop()
     {
-        productionTimer.Stop();
+        if (productionTimer != null)
+        {
+            productionTimer.Stop();
+            productionTimer.Dispose();
+            productionTimer = null; // Now allowed because timer is nullable
+        }
     }
-
 }

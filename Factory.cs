@@ -1,21 +1,25 @@
-using System;
 using System.Collections.Generic;
 
 public class Factory
 {
-    public string Name;
-    public List<Room> Rooms = new List<Room>();
+    public string Name { get; private set; }
+    private List<Room> rooms = new List<Room>();
+    public IReadOnlyList<Room> Rooms => rooms.AsReadOnly();
 
     public Factory(string name)
     {
         Name = name;
     }
 
-    // Calculate total production including worker upgrade
-    public int GetTotalProduction()
+    public void AddRoom(Room room)
+    {
+        rooms.Add(room);
+    }
+
+    public int GetTotalProduction(int workerUpgradeLevel)
     {
         int total = 0;
-        foreach (Room r in Rooms)
+        foreach (Room r in rooms)
         {
             total += r.GetProduction(workerUpgradeLevel);
         }
