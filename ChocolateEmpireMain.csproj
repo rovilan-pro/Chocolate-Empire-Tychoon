@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework> 
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="ChocoEmpireMain.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="Resource.cs" />
+    <Compile Include="Worker.cs" />
+    <Compile Include="Room.cs" />
+    <Compile Include="Factory.cs" />
+    <Compile Include="Upgrade.cs" />
+    <Compile Include="Event.cs" />
+
+    <Compile Include="Systems\ProductionSystem.cs" />
+    <Compile Include="Systems\SaveSystem.cs" />
+    <Compile Include="Systems\OfflineSystem.cs" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,5 @@
+/Users/rolandodelatorre/Documents/Personal Programming/Under Development/Chocolate Empire Tychoon/obj/Debug/net7.0/ChocolateEmpireMain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/rolandodelatorre/Documents/Personal Programming/Under Development/Chocolate Empire Tychoon/obj/Debug/net7.0/ChocolateEmpireMain.AssemblyInfoInputs.cache
+/Users/rolandodelatorre/Documents/Personal Programming/Under Development/Chocolate Empire Tychoon/obj/Debug/net7.0/ChocolateEmpireMain.AssemblyInfo.cs
+/Users/rolandodelatorre/Documents/Personal Programming/Under Development/Chocolate Empire Tychoon/obj/Debug/net7.0/ChocolateEmpireMain.csproj.CoreCompileInputs.cache
+/Users/rolandodelatorre/Documents/Personal Programming/Under Development/Chocolate Empire Tychoon/obj/Debug/net7.0/ChocolateEmpireMain.sourcelink.json

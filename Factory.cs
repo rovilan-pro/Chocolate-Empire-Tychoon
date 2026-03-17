@@ -11,18 +11,14 @@ public class Factory
         Name = name;
     }
 
+    // Calculate total production including worker upgrade
     public int GetTotalProduction()
     {
         int total = 0;
         foreach (Room r in Rooms)
         {
-            total += r.GetProduction();
+            total += r.GetProduction(workerUpgradeLevel);
         }
         return total;
-    }
-
-    public void AddRoom(Room room)
-    {
-        Rooms.Add(room);
     }
 }

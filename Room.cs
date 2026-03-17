@@ -6,23 +6,13 @@ public class Room
     public string Name;
     public int Level = 1;
     public int MaxWorkers;
+    public int ProductionBonus = 1;
     public List<Worker> Workers = new List<Worker>();
-    public int ProductionBonus = 1; // multiplier per room, can upgrade later
 
     public Room(string name, int maxWorkers)
     {
         Name = name;
         MaxWorkers = maxWorkers;
-    }
-
-    public int GetProduction()
-    {
-        int total = 0;
-        foreach (Worker w in Workers)
-        {
-            total += w.Production;
-        }
-        return total * ProductionBonus;
     }
 
     public bool AddWorker(Worker w)
@@ -33,5 +23,22 @@ public class Room
             return true;
         }
         return false;
+    }
+
+    public int GetProduction(int workerUpgradeLevel)
+    {
+        int total = 0;
+        foreach (Worker w in Workers)
+            total += w.GetProduction(workerUpgradeLevel);
+        return total * ProductionBonus;
+    }
+
+    public int GetUpgradeCost() => (int)(50 * Math.Pow(1.6, Level - 1));
+
+    public void Upgrade()
+    {
+        Level++;
+        ProductionBonus++;
+        MaxWorkers += 2;
     }
 }

@@ -2,13 +2,18 @@ using System;
 using System.Collections.Generic;
 
 public class Player
-{
+{   
+    public DateTime LastPlayed;
     public string Name;
     public string FactoryName;
     public int Chocolate = 0;
     public List<Worker> Workers = new List<Worker>();
 
+    public Upgrade WorkerUpgrade = new Upgrade("Worker Efficiency", 20, 1.5);
+
     public List<Factory> Factories = new List<Factory>();
+
+    public int MaxFactories = 1;
 
     public Player(string name, string factory)
     {
@@ -25,4 +30,5 @@ public class Player
         Console.WriteLine($"Chocolate: {Chocolate}");
         Console.WriteLine($"Workers: {Workers.Count}");
     }
+
 }

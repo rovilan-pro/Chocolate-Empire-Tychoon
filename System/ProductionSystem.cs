@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Timers;
 
 public class ProductionSystem
@@ -14,14 +15,14 @@ public class ProductionSystem
         productionTimer.AutoReset = true;
         productionTimer.Enabled = true;
     }
-
+    // Funcion
     private void ProduceChocolate(Object source, ElapsedEventArgs e)
     {
         int totalProduction = 0;
 
         foreach (Factory f in player.Factories)
         {
-            totalProduction += f.GetTotalProduction();
+            totalProduction += f.GetTotalProduction(player.WorkerUpgrade.Level);
         }
 
         player.Chocolate += totalProduction;
@@ -36,4 +37,5 @@ public class ProductionSystem
     {
         productionTimer.Stop();
     }
+
 }

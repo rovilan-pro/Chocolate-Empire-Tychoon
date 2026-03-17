@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "yw4u9Y9TY+Q=",
+  "success": true,
+  "projectFilePath": "/Users/rolandodelatorre/Documents/Personal Programming/Under Development/Chocolate Empire Tychoon/ChocolateEmpireMain.csproj",
+  "expectedPackageFiles": [
+    "/Users/rolandodelatorre/.nuget/packages/microsoft.netcore.app.ref/6.0.36/microsoft.netcore.app.ref.6.0.36.nupkg.sha512",
+    "/Users/rolandodelatorre/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.36/microsoft.aspnetcore.app.ref.6.0.36.nupkg.sha512",
+    "/Users/rolandodelatorre/.nuget/packages/microsoft.netcore.app.host.osx-arm64/6.0.36/microsoft.netcore.app.host.osx-arm64.6.0.36.nupkg.sha512"
+  ],
+  "logs": []
+}
