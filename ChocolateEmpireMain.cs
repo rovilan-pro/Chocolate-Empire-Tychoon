@@ -4,13 +4,13 @@ using ChocolateEmpireTyhcoon.Systems; // Import Systems folder
 
 public class ChocoEmpireMain
 {
-    static Player? player; // nullable to fix CS8618
+    static Player? player; 
     static bool gameRunning = true;
     static ProductionSystem? autoProd;
 
     public static void Main(string[] args)
     {
-        Console.WriteLine("=== CHOCOLATE MANIA EMPIRE ===");
+        Console.WriteLine("=== CHOCOLATE EMPIRE ===");
         Console.WriteLine("By AGames+ Studio\n");
 
         StartGame();
