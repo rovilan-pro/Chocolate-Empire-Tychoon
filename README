@@ -1,0 +1,18 @@
+
+An Idle Game Framework for Chocolate Empire Tychoon.
+
+Game framework for Chocolate Empire Tychoon coded in C# with multiple branches. 
+Not yet intergrated for Unity only a prototype. 
+
+If interested you can contact me in Discord
+(Haven't putted my profile yet)
+# Development Environment
+
+C#
+JSON
+CSPROJ
+
+# Useful Websites
+
+* [w3schools.com](https://www.w3schools.com/cs/index.php)
+* [mooict.com](https://www.mooict.com/c-tutorial-create-a-simple-platform-game-in-visual-studio/)
