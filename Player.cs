@@ -29,6 +29,23 @@ public class Player
         Console.WriteLine($"Factory: {FactoryName}");
         Console.WriteLine($"Chocolate: {Chocolate}");
         Console.WriteLine($"Workers: {Workers.Count}");
+        Console.WriteLine($"Factories: {Factories.Count}");
     }
 
+    // ===== Helper Methods Needed by Main =====
+
+    public void AddWorker(Worker worker)
+    {
+        Workers.Add(worker);
+    }
+
+    public void RemoveWorker(Worker worker)
+    {
+        Workers.Remove(worker);
+    }
+
+    public void AddFactory(Factory factory)
+    {
+        Factories.Add(factory);
+    }
 }

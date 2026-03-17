@@ -1,11 +1,12 @@
 using System;
 using System.Collections.Generic;
+using ChocolateEmpireTyhcoon.Systems; // Import Systems folder
 
-public class ChocolateEmpireMain
+public class ChocoEmpireMain
 {
-    static Player player;
+    static Player? player; // nullable to fix CS8618
     static bool gameRunning = true;
-    static ProductionSystem autoProd;
+    static ProductionSystem? autoProd;
 
     public static void Main(string[] args)
     {
@@ -20,10 +21,10 @@ public class ChocolateEmpireMain
     {
         // Create or load player
         Console.Write("Enter your Boss Name: ");
-        string name = Console.ReadLine();
+        string name = Console.ReadLine() ?? "Boss";
 
         Console.Write("Enter Factory Name: ");
-        string factoryName = Console.ReadLine();
+        string factoryName = Console.ReadLine() ?? "Factory 1";
 
         player = new Player(name, factoryName);
 
@@ -31,7 +32,7 @@ public class ChocolateEmpireMain
         SaveSystem.Load(player);
 
         // Apply offline earnings
-        OfflineSystem.Apply(player);
+        OfflineEarnings.ApplyOfflineEarnings(player);
 
         // If no factories exist, create first factory
         if (player.Factories.Count == 0)
@@ -39,7 +40,7 @@ public class ChocolateEmpireMain
             Factory factory1 = new Factory(player.FactoryName);
             Room chocolateRoom = new Room("Chocolate Room", 5);
             factory1.AddRoom(chocolateRoom);
-            player.Factories.Add(factory1);
+            player.AddFactory(factory1);
         }
 
         Console.WriteLine($"\nWelcome Boss {player.Name}!");
@@ -51,48 +52,23 @@ public class ChocolateEmpireMain
 
     static void GameLoop()
     {   
-        //Game Loop/Menu System
+        // Game Loop/Menu System
         while (gameRunning)
         {
             ShowMenu();
-            string choice = Console.ReadLine();
+            string choice = Console.ReadLine() ?? "";
 
             switch (choice)
             {
-                case "1": 
-                ManualProduction(); 
-                break;
-
-                case "2": 
-                player.ShowStatus(); 
-                break;
-
-                case "3": 
-                BuyWorker(); 
-                break;
-
-                case "4": 
-                AssignWorkerToRoom(); 
-                break;
-
-                case "5": 
-                UpgradeWorkers(); 
-                break;
-
-                case "6": 
-                UpgradeRoom(); 
-                break;
-
-                case "7": 
-                UnlockFactory(); 
-                break;
-
-                case "8":
-                    ExitGame();
-                    break;
-                default:
-                    Console.WriteLine("Invalid choice.");
-                    break;
+                case "1": ManualProduction(); break;
+                case "2": player!.ShowStatus(); break; // safe, player initialized in StartGame
+                case "3": BuyWorker(); break;
+                case "4": AssignWorkerToRoom(); break;
+                case "5": UpgradeWorkers(); break;
+                case "6": UpgradeRoom(); break;
+                case "7": UnlockFactory(); break;
+                case "8": ExitGame(); break;
+                default: Console.WriteLine("Invalid choice."); break;
             }
         }
     }
@@ -110,28 +86,36 @@ public class ChocolateEmpireMain
         Console.WriteLine("8. Exit");
         Console.Write("Select: ");
     }
+
     // Manual Function
     static void ManualProduction()
     {
-        player.Chocolate += 1;
-        Console.WriteLine("You produced 1 chocolate!");
+        if (player != null)
+        {
+            player.Chocolate += 1;
+            Console.WriteLine("You produced 1 chocolate!");
+        }
     }
+
     // Adding Worker 
     static void BuyWorker()
     {
+        if (player == null) return;
+
         int cost = 10;
         if (player.Chocolate >= cost)
         {
             player.Chocolate -= cost;
-            player.Workers.Add(new Worker());
+            player.AddWorker(new Worker());
             Console.WriteLine("Worker hired!");
         }
         else Console.WriteLine("Not enough chocolate.");
     }
+
     // Assigning Worker to Room
     static void AssignWorkerToRoom()
     {
-        if (player.Workers.Count == 0)
+        if (player == null || player.Workers.Count == 0)
         {
             Console.WriteLine("You have no workers to assign!");
             return;
@@ -163,14 +147,17 @@ public class ChocolateEmpireMain
         Worker workerToAssign = player.Workers[0];
         if (selectedRoom.AddWorker(workerToAssign))
         {
-            player.Workers.Remove(workerToAssign);
+            player.RemoveWorker(workerToAssign);
             Console.WriteLine($"Worker assigned to {selectedRoom.Name}!");
         }
         else Console.WriteLine("This room is full!");
     }
+
     // Upgrade Worker 
     static void UpgradeWorkers()
     {
+        if (player == null) return;
+
         int cost = player.WorkerUpgrade.GetCost();
         Console.WriteLine($"\nUpgrade Worker Efficiency");
         Console.WriteLine($"Current Level: {player.WorkerUpgrade.Level}");
@@ -184,9 +171,12 @@ public class ChocolateEmpireMain
         }
         else Console.WriteLine("Not enough chocolate.");
     }
+
     // Upgrade Room
     static void UpgradeRoom()
     {
+        if (player == null || player.Factories.Count == 0) return;
+
         Room room = player.Factories[0].Rooms[0];
         int cost = room.GetUpgradeCost();
 
@@ -202,9 +192,12 @@ public class ChocolateEmpireMain
         }
         else Console.WriteLine("Not enough chocolate.");
     }
+
     // Unlock New Factory
     static void UnlockFactory()
     {
+        if (player == null) return;
+
         int cost = player.Factories.Count * 200;
 
         Console.WriteLine($"\nUnlock New Factory");
@@ -217,7 +210,7 @@ public class ChocolateEmpireMain
             Factory newFactory = new Factory("Factory " + (player.Factories.Count + 1));
             newFactory.AddRoom(new Room("Chocolate Room", 5));
 
-            player.Factories.Add(newFactory);
+            player.AddFactory(newFactory);
 
             Console.WriteLine("New factory unlocked!");
         }
@@ -227,9 +220,11 @@ public class ChocolateEmpireMain
     // Exit Game Function
     static void ExitGame()
     {
+        if (player == null) return;
+
         player.LastPlayed = DateTime.Now;
         SaveSystem.Save(player);
-        autoProd.Stop();
+        autoProd?.Stop();
         gameRunning = false;
         Console.WriteLine("Game saved! Goodbye!");
     }
